@@ -1,0 +1,673 @@
+if game.PlaceId == 1458767429 then
+
+local Abstract = loadstring(game:HttpGet("https://raw.githubusercontent.com/AbstractPoo/Main/AbstractUI/AbstractUI"))()
+local UI = Abstract:Create("Ninja Hub", UDim2.new(0, 420, 0, 450))
+UI:Divider("Automation")
+
+
+UI:Button("Button", "AutoFarm Points (use AutoHit)", function()
+ while wait() do
+ for i,v in pairs(game.Players:GetChildren()) do
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
+wait(0.8)
+ end
+end
+end)
+    
+UI:Divider("Misc")
+
+UI:Button("Button", "Auto Hit", function()
+    getgenv().farmer = true
+while wait() do
+    if getgenv().farmer == true then
+ 
+local args = {
+    [1] = "m1",
+    [2] = {
+        ["air"] = false,
+        ["mousehit"] = CFrame.new(-484.569305, -176.252823, 11561.1416, -0.622997701, -0.303034544, 0.721140742, -0, 0.92191124, 0.387401372, -0.782223761, 0.241350159, -0.574348509)
+    }
+}
+ 
+game:GetService("Players").LocalPlayer.Backpack.ServerTraits.Input:FireServer(unpack(args))
+end
+end
+end)
+
+getgenv().farmer = false
+UI:Toggle("Toggle", "Anti Afk", false, function(state)
+    getgenv().farmer = not getgenv().farmer
+    if getgenv().farmer then 
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:connect(function()
+            vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            wait(1)
+            vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end)
+    end
+end)
+end
+
+if game.PlaceId == 4042427666 then
+local Abstract = loadstring(game:HttpGet("https://raw.githubusercontent.com/AbstractPoo/Main/AbstractUI/AbstractUI"))()
+local UI = Abstract:Create("Ninja Hub", UDim2.new(0, 420, 0, 450))
+UI:Divider("Automation")
+
+
+UI:Button("Button", "AutoFarm Str", function()
+while wait() do
+        game:GetService("ReplicatedStorage").RSPackage.Events.StatFunction:InvokeServer("Stat","Strength")
+     end
+end)
+
+UI:Button("Button", "Autofarm Durability", function()
+while wait() do
+        game:GetService("ReplicatedStorage").RSPackage.Events.StatFunction:InvokeServer("Stat","Durability")
+end
+end)
+
+UI:Button("Button", "AutoFarm Chakra", function()
+ while wait() do
+        game:GetService("ReplicatedStorage").RSPackage.Events.StatFunction:InvokeServer("Stat","Sword")
+    end
+end)
+
+UI:Button("Button", "AutoFarm Sworskill", function()
+ while wait() do
+        game:GetService("ReplicatedStorage").RSPackage.Events.StatFunction:InvokeServer("Stat","Sword")
+     end
+end)
+
+UI:Button("Button", "AutoFarm Speed", function()
+   while wait() do
+   game:GetService("ReplicatedStorage").RSPackage.Events.StatFunction:InvokeServer("Stat","Speed")
+end
+end)
+
+UI:Button("Button", "AutoFarm Agility", function()
+while wait() do
+game:GetService("ReplicatedStorage").RSPackage.Events.StatFunction:InvokeServer("Stat","Agility")
+end
+end)
+
+UI:Divider("Misc")
+
+getgenv().farmer = false
+UI:Toggle("Toggle", "Anti Afk", false, function(state)
+    getgenv().farmer = not getgenv().farmer
+    if getgenv().farmer then 
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:connect(function()
+            vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            wait(1)
+            vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end)
+    end
+end)
+
+UI:Button("Button", "No Stun Press X", function()
+	local walkspeedplayer = game:GetService("Players").LocalPlayer
+	local walkspeedmouse = walkspeedplayer:GetMouse()
+	
+	local walkspeedenabled = false
+	
+	function x_walkspeed(key)
+		if (key == "x") then
+			if walkspeedenabled == false then
+				_G.WS = 50;
+				local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+				Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+				Humanoid.WalkSpeed = _G.WS;
+				end)
+				Humanoid.WalkSpeed = _G.WS;
+				
+				walkspeedenabled = true
+			elseif walkspeedenabled == true then
+				_G.WS = 20;
+				local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+				Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+				Humanoid.WalkSpeed = _G.WS;
+				end)
+				Humanoid.WalkSpeed = _G.WS;
+				
+				walkspeedenabled = false
+	end
+		end
+	end
+	
+	walkspeedmouse.KeyDown:connect(x_walkspeed)
+end)
+
+UI:Slider("Slider", "Walkspeed", 0, 500, 50, function(value)
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = (value)
+end)
+UI:Slider("Slider", "JumpPower", 0, 500, 50, function(value)
+ game.Players.LocalPlayer.Character.Humanoid.JumpPower = (value)
+end)
+end
+
+if game.PlaceId == 5205790985 then
+local Abstract = loadstring(game:HttpGet("https://raw.githubusercontent.com/AbstractPoo/Main/AbstractUI/AbstractUI"))()
+local UI = Abstract:Create("Ninja Hub", UDim2.new(0, 500, 0, 500))
+UI:Divider("Main")
+
+
+UI:Button("Button", "AutoFarm Money", function()
+local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+local location = CFrame.new(-330.2229, 92.597023, 1645.7146, -0.0245078802, 0, -0.999699652, 0, 1, 0, 0.999699652, 0, -0.0245078802)
+local humanoid = game.Players.LocalPlayer.Character.Humanoid
+humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+wait(0.1)
+pl.CFrame = location
+
+wait(1)
+
+for i = 1,10000 do
+game:GetService("ReplicatedStorage").Quest:FireServer("MiraYooQuest", workspace["Mira Yoo"])
+game:GetService("ReplicatedStorage").Quest:FireServer("MiraYooQuestDone", workspace["Mira Yoo"])
+end
+end)
+
+
+
+UI:Button("Button", "Auto Meditate", false,  function()
+    while wait() do
+    for i = 1,100 do
+game:GetService("ReplicatedStorage").Remotes.Carrying:FireServer("", "Meditate")
+game:GetService("ReplicatedStorage").Remotes.Carrying:FireServer("Passed", "MeditateEnd")
+end
+end
+end)
+
+
+getgenv().farmer = false
+UI:Toggle("Toggle", "Anti Afk", false, function(state)
+    getgenv().farmer = not getgenv().farmer
+    if getgenv().farmer then 
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:connect(function()
+            vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            wait(1)
+            vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end)
+    end
+end)
+
+
+UI:Button("Button", "Auto Wipe (Click Rejoin button once clicked))", function()
+
+
+
+
+wait(1)
+
+
+local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+local location = CFrame.new(-330.2229, 92.597023, 1645.7146, -0.0245078802, 0, -0.999699652, 0, 1, 0, 0.999699652, 0, -0.0245078802)
+local humanoid = game.Players.LocalPlayer.Character.Humanoid
+humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+wait(0.1)
+pl.CFrame = location
+
+wait(1)
+
+for i = 1,1000 do
+game:GetService("ReplicatedStorage").Quest:FireServer("MiraYooQuest", workspace["Mira Yoo"])
+game:GetService("ReplicatedStorage").Quest:FireServer("MiraYooQuestDone", workspace["Mira Yoo"])
+end
+
+
+wait(2)
+
+local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+local location = CFrame.new(206.918945, 38.5113373, 2060.31201)
+local humanoid = game.Players.LocalPlayer.Character.Humanoid
+humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+wait(0.1)
+pl.CFrame = location
+
+game:GetService("ReplicatedStorage").Remotes.dialogueRemote:FireServer("wipeAll")
+
+end)
+UI:Button("Button", "Rejoin Button", function()
+
+game:GetService("TeleportService"):Teleport(5205790985, player)
+end)
+
+UI:Button("Button", "No Stun Press X", function()
+	local walkspeedplayer = game:GetService("Players").LocalPlayer
+	local walkspeedmouse = walkspeedplayer:GetMouse()
+	
+	local walkspeedenabled = false
+	
+	function x_walkspeed(key)
+		if (key == "x") then
+			if walkspeedenabled == false then
+				_G.WS = 50;
+				local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+				Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+				Humanoid.WalkSpeed = _G.WS;
+				end)
+				Humanoid.WalkSpeed = _G.WS;
+				
+				walkspeedenabled = true
+			elseif walkspeedenabled == true then
+				_G.WS = 20;
+				local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+				Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+				Humanoid.WalkSpeed = _G.WS;
+				end)
+				Humanoid.WalkSpeed = _G.WS;
+				
+				walkspeedenabled = false
+			end
+		end
+	end
+
+	walkspeedmouse.KeyDown:connect(x_walkspeed)
+end)
+
+UI:Button("Button", "No JumpCooldown", function()
+    local l__LocalPlayer__1 = game.Players.LocalPlayer;
+    local l__Character__2 = l__LocalPlayer__1.Character;
+    local l__Humanoid__3 = l__Character__2:FindFirstChild("Humanoid");
+    l__Humanoid__3.JumpPower = 0;
+    local u1 = false;
+    game:GetService("UserInputService").InputBegan:Connect(function(p1, p2)
+        if p1.KeyCode == Enum.KeyCode.Space and not u1 then
+            if not p2 and l__Character__2.Core.StunType.Value == "" and l__LocalPlayer__1.Quests.Quest.Value ~= "Carry this box and run from Point A to Point B and back." and not l__Character__2:FindFirstChild("Pushups") and not l__Character__2:FindFirstChild("Situps") and not l__Character__2:FindFirstChild("Squats") then
+                u1 = true;
+                l__Humanoid__3.JumpPower = 50;
+                wait();
+                l__Humanoid__3.JumpPower = 0;
+                wait();
+                u1 = false;
+                return;
+            end
+        else
+            return
+        end
+    end)
+end)
+
+
+
+UI:Dropdown("Level Farm", "Autofarm Levels", {"Autofarm fast", "Autofarm slow"}, function(value)
+    if value == "Autofarm fast" then
+   	_G.farm = true
+    _G.waitTime = 0.1
+
+local npcs = {}
+    for i,v in pairs(game.Workspace:GetChildren()) do
+        if string.match(v.Name, "NPCNeutral") ~= nil and v.Name ~= "storyNPCs" and string.match(v.Name, "Easy") == nil then
+            table.insert(npcs, v.Name)
+end
+    end
+    while wait(_G.waitTime) and _G.farm do
+        if _G.farm == false then return end
+        game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Combat)
+        for i,v in pairs(npcs) do
+            if game:GetService("Players").LocalPlayer.PlayerGui.QuestTracker.Enabled == false then
+                local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+                local location = CFrame.new(477.62973, 34.47229, 1959.92834)
+                local humanoid = game.Players.LocalPlayer.Character.Humanoid
+                wait(0.5)
+                pl.CFrame = location
+                wait(1)
+                game:GetService("ReplicatedStorage").Quest:FireServer("MobQuest",workspace["Bandit person"])
+            end
+            
+            repeat
+                wait(_G.waitTime)
+                if game.Workspace[v]:FindFirstChild("HumanoidRootPart") ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") ~= nil then
+                game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.new(game.Workspace[v]:FindFirstChild("HumanoidRootPart").Position.X, game.Workspace[v]:FindFirstChild("HumanoidRootPart").Position.Y, game.Workspace[v]:FindFirstChild("HumanoidRootPart").Position.Z)
+                if game.Players.LocalPlayer.Character:FindFirstChild("Combat") ~= nil then
+                game.Players.LocalPlayer.Character.Combat.RemoteEvent:FireServer("M1")
+                
+                local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+local location = CFrame.new(528.741516, 127.477089, 2107.14355)
+local humanoid = game.Players.LocalPlayer.Character.Humanoid
+wait(0.4)
+pl.CFrame = location
+                
+            
+                else
+                    game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+                    game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Combat)
+                end
+
+                else
+                    wait(_G.waitTime)
+                end
+            until game.Workspace[v].Humanoid.Health <= 5
+            game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.new(game.Workspace[v]:FindFirstChild("HumanoidRootPart").Position.X, game.Workspace[v]:FindFirstChild("HumanoidRootPart").Position.Y, game.Workspace[v]:FindFirstChild("HumanoidRootPart").Position.Z)
+            wait(0.5)
+            local A_1 = v
+            local A_2 = "Grip"
+            local Event = game:GetService("ReplicatedStorage").Remotes.Carrying
+            Event:FireServer(A_1, A_2)
+            wait(1)
+            end
+        end
+
+elseif value == "Autofarm slow" then
+	_G.farm = true
+    _G.waitTime = 0.1
+
+local npcs = {}
+    for i,v in pairs(game.Workspace:GetChildren()) do
+        if string.match(v.Name, "NPCNeutral") ~= nil and v.Name ~= "storyNPCs" and string.match(v.Name, "Easy") == nil then
+            table.insert(npcs, v.Name)
+end
+    end
+    while wait(_G.waitTime) and _G.farm do
+        if _G.farm == false then return end
+        game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Combat)
+        for i,v in pairs(npcs) do
+            if game:GetService("Players").LocalPlayer.PlayerGui.QuestTracker.Enabled == false then
+                local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+                local location = CFrame.new(477.62973, 34.47229, 1959.92834)
+                local humanoid = game.Players.LocalPlayer.Character.Humanoid
+                wait(0.5)
+                pl.CFrame = location
+                wait(1)
+                game:GetService("ReplicatedStorage").Quest:FireServer("MobQuest",workspace["Bandit person"])
+            end
+            
+            repeat
+                wait(_G.waitTime)
+                if game.Workspace[v]:FindFirstChild("HumanoidRootPart") ~= nil and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") ~= nil then
+                game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.new(game.Workspace[v]:FindFirstChild("HumanoidRootPart").Position.X, game.Workspace[v]:FindFirstChild("HumanoidRootPart").Position.Y, game.Workspace[v]:FindFirstChild("HumanoidRootPart").Position.Z)
+                if game.Players.LocalPlayer.Character:FindFirstChild("Combat") ~= nil then
+                game.Players.LocalPlayer.Character.Combat.RemoteEvent:FireServer("M1")
+                
+                local pl = game.Players.LocalPlayer.Character.HumanoidRootPart
+local location = CFrame.new(528.741516, 127.477089, 2107.14355)
+local humanoid = game.Players.LocalPlayer.Character.Humanoid
+wait(0.7)
+pl.CFrame = location
+                
+            
+                else
+                    game.Players.LocalPlayer.Character.Humanoid:UnequipTools()
+                    game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack.Combat)
+                end
+
+                else
+                    wait(_G.waitTime)
+                end
+            until game.Workspace[v].Humanoid.Health <= 5
+            game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart").CFrame = CFrame.new(game.Workspace[v]:FindFirstChild("HumanoidRootPart").Position.X, game.Workspace[v]:FindFirstChild("HumanoidRootPart").Position.Y, game.Workspace[v]:FindFirstChild("HumanoidRootPart").Position.Z)
+            wait(0.5)
+            local A_1 = v
+            local A_2 = "Grip"
+            local Event = game:GetService("ReplicatedStorage").Remotes.Carrying
+            Event:FireServer(A_1, A_2)
+            wait(1)
+            
+        end
+    end
+end
+end)
+
+
+
+UI:Dropdown("Safe", "Hide Parts", {"Shirt", "Pants", "Meshaccesory", "Hidename"}, function(value)
+    if value == "Shirt" then
+     game.Players.LocalPlayer.Character.Shirt:destroy()
+    elseif value == "Pants" then
+     game.Players.LocalPlayer.Character.Pants:destroy()
+    elseif value == "Meshaccesory" then
+     
+game.Players.LocalPlayer.Character.MeshPartAccessory:destroy()
+elseif value == "Hidename" then
+game.Players.LocalPlayer.Character.Head.NameTag:destroy()
+
+game.Players.LocalPlayer.Character["Meshes/LimitBreakingHairAccessory"]:destroy()
+    end
+end)
+
+UI:Toggle("Toggle", "Anti Mod", false, function(state)
+	local Mods={ --Put Moderator UserIDs here, to add more just follow the existing format/pattern (The existing userids are examples that you can remove/replace.)
+		[26429269]=true;
+		[52566266]=true;
+		[86946347]=true;
+		[1912741121]=true;
+		[98207635]=true;
+		[53398967]=true;
+		[328914516]=true;
+		[1125692630]=true;
+		 [90673861]=true;
+		[163419556]=true;
+		[552111197]=true;
+		[573369185]=true;
+		[340306676] = true;
+		[1317340278] = true;
+		[511826669] = true;
+		[34852511] = true;
+	}
+	
+	
+	local Players=game:GetService'Players'
+	local LPlayer=game.Players.LocalPlayer
+	local PlayersC=Players:GetPlayers()
+	for I=1,#PlayersC do
+		local Player=PlayersC[I]
+		if Player~=LPlayer and Mods[Player.UserId] then
+			LPlayer:Kick('Moderator Is In-Game!: '..Player.Name)
+		end
+	end
+	Players.PlayerAdded:Connect(function(Player)
+		if Player~=LPlayer and Mods[Player.UserId] then
+			LPlayer:Kick('Moderator Has Joined!: '..Player.Name)
+			
+		end
+end)
+
+end)
+end
+
+if game.PlaceId == 2569625809 then
+local Abstract = loadstring(game:HttpGet("https://raw.githubusercontent.com/AbstractPoo/Main/AbstractUI/AbstractUI"))()
+local UI = Abstract:Create("Ninja Hub", UDim2.new(0, 420, 0, 450))
+UI:Divider("Automation")
+
+
+UI:Button("Button", "AutoFarm Exp (Grass)", function()
+ while wait() do
+            game:GetService("ReplicatedStorage").Remotes.DoClientMagic:FireServer("Grass","Spore Bombs")
+     
+        
+         wait()
+       
+            game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Grass","Spore Bombs",CFrame.new(-1632.29602, 40.9587402, 921.052429, 0.94363457, -0.0706476048, -0.323361903, -0, 0.976955473, -0.213443667, 0.33098945, 0.201412827, 0.921888769))
+      
+         wait()
+         
+            game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Grass","Poison Needles")
+      
+wait()
+
+    game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Grass","Poison Needles")
+
+ wait()
+
+    game:GetService("ReplicatedStorage").Remotes.DoClientMagic:FireServer("Grass","Poison Needles")
+ 
+end
+end)
+
+
+UI:Button("Button", "Autofarm Exp (Fire)", function()
+while wait() do
+    game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Fire","Consecutive Fire Bullets",CFrame.new(-1632.29602, 40.9587402, 921.052429, 0.94363457, -0.0706476048, -0.323361903, -0, 0.976955473, -0.213443667, 0.33098945, 0.201412827, 0.921888769))
+
+    wait()
+    
+    game:GetService("ReplicatedStorage").Remotes.DoClientMagic:FireServer("Fire","Consecutive Fire Bullets")
+    
+    wait()
+    
+    game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Fire","Blaze Column")
+    
+    wait()
+    
+    game:GetService("ReplicatedStorage").Remotes.DoClientMagic:FireServer("Fire","Blaze Column")
+    
+    wait()
+end
+end)
+
+
+UI:Button("Button", "AutoFarm Exp (Water)", function()
+ while wait() do
+    game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Water","Water Beam")
+
+    wait()
+    
+    game:GetService("ReplicatedStorage").Remotes.DoClientMagic:FireServer("Water","Water Beam")
+    
+    wait()
+    
+    game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Water","Water Tornado")
+    
+    wait()
+    
+    game:GetService("ReplicatedStorage").Remotes.DoClientMagic:FireServer("Water","Water Tornado")
+    
+    end
+    end)
+
+
+UI:Button("Button", "Kill All Players (Turn On Exp Farm)", function()
+    local players = (game.Players:GetPlayers())
+    for i = 1, #players do
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Parent = script.Parent
+    local textBox = Instance.new("TextBox")
+    textBox.Text = (players[i].Name)
+    game.Players[textBox.Text].Character.Humanoid.HealthChanged:connect(function(health)
+    if game.Players[textBox.text].Character.Humanoid.Health <= 40 then
+    local targetpos = game:GetService'Players'[textBox.Text].Character.HumanoidRootPart.Position--get target pos
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(targetpos.X, targetpos.Y, targetpos.Z) --TP to target
+    local plr = game.Players.LocalPlayer
+    local mouse = plr:GetMouse()
+    local TrueMagic = game.ReplicatedStorage.Remotes.DoMagic
+    game.ReplicatedStorage.Remotes.DoClientMagic:FireServer("Fire", "Consecutive Fire Bullets")--Change "Fire" To your magic and change "Consecutive Fire Bullets" to your own magic move.
+    TrueMagic:InvokeServer("Fire", "Consecutive Fire Bullets", mouse.Target, mouse.Hit)--Change "Fire" To your magic and change "Consecutive Fire Bullets" to your own magic move.
+    
+    end
+    end)
+    end
+    
+UI:Divider("Misc")
+
+UI:Button("Button", "Skill Spam", function()
+while wait() do
+        game:GetService("ReplicatedStorage").Remotes.DoClientMagic:FireServer("Grass","Spore Bombs")
+ 
+    
+     wait()
+   
+        game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Grass","Spore Bombs",CFrame.new(-1632.29602, 40.9587402, 921.052429, 0.94363457, -0.0706476048, -0.323361903, -0, 0.976955473, -0.213443667, 0.33098945, 0.201412827, 0.921888769))
+  
+     wait()
+     
+        game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Grass","Poison Needles")
+  
+wait()
+
+game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Grass","Poison Needles")
+
+wait()
+
+game:GetService("ReplicatedStorage").Remotes.DoClientMagic:FireServer("Grass","Poison Needles")
+
+wait()
+
+game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Fire","Consecutive Fire Bullets",CFrame.new(-1632.29602, 40.9587402, 921.052429, 0.94363457, -0.0706476048, -0.323361903, -0, 0.976955473, -0.213443667, 0.33098945, 0.201412827, 0.921888769))
+
+wait()
+
+game:GetService("ReplicatedStorage").Remotes.DoClientMagic:FireServer("Fire","Consecutive Fire Bullets")
+
+wait()
+
+game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Fire","Blaze Column")
+
+wait()
+
+game:GetService("ReplicatedStorage").Remotes.DoClientMagic:FireServer("Fire","Blaze Column")
+
+wait()
+
+game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Water","Water Beam")
+
+wait()
+
+game:GetService("ReplicatedStorage").Remotes.DoClientMagic:FireServer("Water","Water Beam")
+
+wait()
+
+game:GetService("ReplicatedStorage").Remotes.DoMagic:InvokeServer("Water","Water Tornado")
+
+wait()
+
+game:GetService("ReplicatedStorage").Remotes.DoClientMagic:FireServer("Water","Water Tornado")
+end
+
+end)
+end)
+
+
+
+
+getgenv().farmer = false
+UI:Toggle("Toggle", "Anti Afk", false, function(state)
+    getgenv().farmer = not getgenv().farmer
+    if getgenv().farmer then 
+        local vu = game:GetService("VirtualUser")
+        game:GetService("Players").LocalPlayer.Idled:connect(function()
+            vu:Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            wait(1)
+            vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+        end)
+    end
+end)
+
+UI:Button("Button", "No Stun Press X", function()
+	local walkspeedplayer = game:GetService("Players").LocalPlayer
+	local walkspeedmouse = walkspeedplayer:GetMouse()
+	
+	local walkspeedenabled = false
+	
+	function x_walkspeed(key)
+		if (key == "x") then
+			if walkspeedenabled == false then
+				_G.WS = 50;
+				local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+				Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+				Humanoid.WalkSpeed = _G.WS;
+				end)
+				Humanoid.WalkSpeed = _G.WS;
+				
+				walkspeedenabled = true
+			elseif walkspeedenabled == true then
+				_G.WS = 20;
+				local Humanoid = game:GetService("Players").LocalPlayer.Character.Humanoid;
+				Humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+				Humanoid.WalkSpeed = _G.WS;
+				end)
+				Humanoid.WalkSpeed = _G.WS;
+				
+				walkspeedenabled = false
+	end
+		end
+	end
+	
+	walkspeedmouse.KeyDown:connect(x_walkspeed)
+end)
+
+end
