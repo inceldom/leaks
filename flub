@@ -3,7 +3,7 @@ local Loaded = false
 if game.PlaceId == 2961297129 then
    Loaded = true
    print("FLUX: Game Death Zone.")
-       --Made by : https://v3rmillion.net/member.php?action=profile&uid=1591342
+       --not made by showerhead
     
    local ShowerLib = loadstring(game:HttpGet("https://fluxteam.xyz/scripts/others/ShowerHeadLibrary.lua"))()
    local ESP = loadstring(game:HttpGet"https://raw.githubusercontent.com/dawid-scripts/Helios-Hub/main/Scripts/HeliosESP.lua")()
