@@ -1,0 +1,27 @@
+local ls
+if not isfile("lkhub_key.txt") then
+    writefile("lkhub_key.txt","a")
+    writefile("lkhub.json","{\"game\":1612000933}")
+end
+local function debuginfo(text)
+    if rconsoleprint then
+        pcall(rconsoleprint,tostring(text)..'\n')
+    end
+end
+ls=hookfunction(game.HttpGet,newcclosure(function(...)
+    local args = {...}
+    local strin = tostring(args[2])
+    if string.find(strin,"finity") then
+        args[2] = "https://raw.githubusercontent.com/inceldom/leaks/main/finitybackup"
+        return ls(unpack(args))
+    end
+    if string.find(strin,"check.php") then
+        return "Whitelisted"
+    end
+    if string.find(strin,"info.php") then
+        debuginfo("Stopped a log with info "..strin)
+        return
+    end
+    return ls(...)
+end))
+loadstring(game:HttpGet("https://raw.githubusercontent.com/inceldom/leaks/main/lkhubbbbackup"))()
