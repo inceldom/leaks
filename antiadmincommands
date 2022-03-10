@@ -1,0 +1,220 @@
+local Hit
+local old2
+old2 = hookmetamethod(game, "__index", function(t, k)
+    if (t:IsA("Mouse") and (k == "Hit")) then
+        if (k == "Hit") then
+            return (k == "Hit" and Hit)
+        end
+    end
+    -- // Return
+    return old2(t, k)
+end)
+local old 
+old = hookmetamethod(game, "__namecall", function(self, ...)
+    local args = {...}
+    if getnamecallmethod() == "FireServer" and tostring(self) == "MainEvent" and args[1] == "TeleportDetect" then 
+        return
+    end
+    return old(self, ...)
+end)
+--https://github.com/Kinlei/MaterialLua/blob/master/Example.lua
+local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
+local UI = Material.Load({Title = "afy x leadmarker - Untitled Hood",Style = 3,SizeX = 400,SizeY = 300,Theme = "Dark"})
+-- // vars \\ --
+local http      = game:GetService("HttpService")
+local plr       = game.Players.LocalPlayer
+local chr       = plr.Character or plr.CharacterAdded:Wait()
+local rootPart  = chr.HumanoidRootPart or chr:WaitForChild("HumanoidRootPart")
+local Settings  = {}
+local Workspace = game:GetService("Workspace")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local LocalPlayer = Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+local Aiming = loadstring(game:HttpGet("https://raw.githubusercontent.com/Afyadh/Kronos-Hub/main/aimmodule.lua", true))()
+local button
+Aiming.Enabled = true
+-- // Test \\ -- 
+local farm = UI.New({Title = "Farming"})
+local cred = UI.New({Title = "Credits"})
+farm.Toggle({
+    Text = "Toggle Money Farm",
+    Callback = function(Value)
+        Settings.moneyfarm = Value
+    end
+})
+spawn(function()
+    pcall(function()
+        while task.wait() do
+            if Settings.moneyfarm then
+                for i,v in pairs(game:GetService("Workspace").Cashiers:GetChildren()) do
+                    if v:IsA("Model") then
+                        if game:GetService("Workspace").Ignored.Drop:FindFirstChild("MoneyDrop") then
+                            game.Players[game.Players.LocalPlayer.Name].Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Drop.MoneyDrop.CFrame
+                            if game:GetService("Workspace").Ignored.Drop.MoneyDrop.ClickDetector then
+                                fireclickdetector(game:GetService("Workspace").Ignored.Drop.MoneyDrop.ClickDetector)
+                            end
+                        elseif v.Humanoid.Health > 1 then
+                            if not game:GetService("Players")[game.Players.LocalPlayer.Name].Backpack:FindFirstChild("[Revolver]") or not game:GetService("Workspace").Players[game.Players.LocalPlayer.Name]:FindFirstChild("[Revolver]") then
+                                game.Players[game.Players.LocalPlayer.Name].Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["[Revolver] - $1300"].Head.CFrame
+                                wait(.2)
+                                fireclickdetector(game:GetService("Workspace").Ignored.Shop["[Revolver] - $1300"].ClickDetector)
+                            end
+                            wait(.2)
+                            if game:GetService("Players")[game.Players.LocalPlayer.Name].Backpack:FindFirstChild("[Revolver]") and not game:GetService("Workspace").Players[game.Players.LocalPlayer.Name]:FindFirstChild("[Revolver]") then
+                                game.Players[game.Players.LocalPlayer.Name].Character.Humanoid:EquipTool(game:GetService("Players")[game.Players.LocalPlayer.Name].Backpack["[Revolver]"])
+                            end
+                            wait(.2)
+                            game.Players[game.Players.LocalPlayer.Name].Character.HumanoidRootPart.CFrame = v.Open.CFrame
+                            wait(.2)
+                            Hit = v.Open.CFrame
+                            if game:GetService("Workspace").Players[game.Players.LocalPlayer.Name]:FindFirstChild("[Revolver]").Ammo.Value == 0 then
+                                game.Players[game.Players.LocalPlayer.Name].Character.Humanoid:UnequipTools()
+                                game:GetService("ReplicatedStorage").MainEvent:FireServer("Reload",game:GetService("Players")[game.Players.LocalPlayer.Name].Backpack["[Revolver]"])
+                            else
+                                game:GetService("VirtualInputManager"):SendMouseButtonEvent(500,0, 0, true, button, 1)
+                                game:GetService("VirtualInputManager"):SendMouseButtonEvent(500,0, 0, false, button, 1)
+                                wait(.2)
+                                game:GetService("VirtualInputManager"):SendMouseButtonEvent(500,0, 0, true, button, 1)
+                                game:GetService("VirtualInputManager"):SendMouseButtonEvent(500,0, 0, false, button, 1)
+                                wait(.2)
+                                game:GetService("VirtualInputManager"):SendMouseButtonEvent(500,0, 0, true, button, 1)
+                                game:GetService("VirtualInputManager"):SendMouseButtonEvent(500,0, 0, false, button, 1)
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end)
+end)
+farm.Button({
+    Text = "Buy Revolver",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").Ignored.Shop["[Revolver] - $1300"].Head.CFrame
+        wait(.2)
+        fireclickdetector(game:GetService("Workspace").Ignored.Shop["[Revolver] - $1300"].ClickDetector)
+    end
+})
+-- // Credits \\ --
+cred.Button({
+    Text = "Scripter | afy#0679",
+    Callback = function()
+        setclipboard("afy#0679")
+    end
+})
+
+cred.Button({
+    Text = "Contribution | LeadMarker#1219",
+    Callback = function()
+        setclipboard("LeadMarker#1219")
+    end
+})
+cred.Button({
+    Text = "Discord | discord.gg/EPsZZ5fQd5",
+    Callback = function()
+        local req = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or getgenv().request or request
+        if not setclipboard then
+            print("discord.gg/EPsZZ5fQd5")
+        end
+        if not req and setclipboard then 
+            setclipboard("discord.gg/EPsZZ5fQd5")
+        end   
+        if req then
+            req({
+                Url = 'http://127.0.0.1:6463/rpc?v=1',
+                Method = 'POST',
+                Headers = {
+                    ['Content-Type'] = 'application/json',
+                    Origin = 'https://discord.com'
+                },
+                Body = game:GetService("HttpService"):JSONEncode({
+                    cmd = 'INVITE_BROWSER',
+                    nonce = game:GetService("HttpService"):GenerateGUID(false),
+                    args = {code = 'EPsZZ5fQd5'}
+                })
+            })
+        end
+    end
+})--[[
+pcall(function()
+    local admins = {'Godpower122', 'Afyzone', 'Strupid101', 'zocat'}
+    local function admincmds(user)
+        local admin = user
+        if game.Players:FindFirstChild(admin) then
+            game.Players:FindFirstChild(admin).Chatted:Connect(function(chat)
+                if chat == '.bring all' then 
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(admin).Character.HumanoidRootPart.CFrame
+                end
+                if chat == '.kill all' then 
+                    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+                end
+                if string.find(chat, '.bring') then 
+                    if chat ~= '.bring all' then 
+                        local findplr = chat:gsub(".bring ", '')
+                        if game.Players.LocalPlayer.Name ==  findplr then 
+                            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players:FindFirstChild(admin).Character.HumanoidRootPart.CFrame
+                        end
+                    end
+                end
+                if string.find(chat, '.kill') then 
+                    if chat ~= '.kill all' then 
+                        local findplr = chat:gsub(".kill ", '')
+                        if game.Players.LocalPlayer.Name ==  findplr then 
+                            game.Players.LocalPlayer.Character.Humanoid.Health = 0
+                        end
+                    end
+                end
+                if chat == '.kick all' then 
+                    game.Players.LocalPlayer:Kick('Kicked by afy')
+                end
+                if string.find(chat, '.kick') then 
+                    if chat ~= '.kick all' then               
+                        local findplr = chat:gsub(".kick ", '')
+                        if game.Players.LocalPlayer.Name ==  findplr then 
+                            game.Players.LocalPlayer:Kick('Kicked by afy')
+                        end
+                    end
+                end
+
+                if string.find(chat, '.chat all') then
+                    local findchat = chat:gsub('.chat all ', '')
+                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(findchat, 'All')
+                end
+
+                if string.find(chat,'.chat') then 
+                    if not string.find(chat, '.chat all') then 
+                        local findchat
+                        for i,v in pairs(game.Players:GetPlayers()) do
+                            if string.find(chat, v.Name) then 
+                                findchat = chat:gsub(v.Name .. ' ', '')
+                            end
+                        end
+                        local newchat = findchat:gsub('.chat ', '')
+                        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(newchat, 'All')
+                    end
+                end
+
+                if string.find(chat, '.kick') then 
+                    if chat ~= '.kick all' then 
+                        local findplr = chat:gsub(".kick ", '')
+                        if game.Players.LocalPlayer.Name ==  findplr then 
+                            game.Players.LocalPlayer:Kick('Kicked by afy')
+                        end
+                    end
+                end
+            end)
+        end
+    end
+    for i,v in pairs(admins) do
+        admincmds(v)
+    end
+end)
+game.Players.PlayerAdded:Connect(function(v)
+    for i2, v2 in pairs(admins) do
+        if v.Name == v2 then 
+            admincmds(tostring(v2))
+        end
+    end
+end)]]
